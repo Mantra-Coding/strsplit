@@ -1,10 +1,11 @@
 # c-strsplit
 
 ## TODO
-- [ ] Limit cases
-  - [ ] Handling of first position and-or last position delimiters in the input string.
-  - [ ] Support escape characters
-  - [ ] Handling consecutive double delimiters
+- [x] Limit cases
+  - [x] Handling of first position and-or last position delimiters in the input string.
+  - [x] Support escape characters
+  - [x] Handling consecutive double delimiters
+- [x] Add Header File
 - [ ] Optimize performance (aka :wave: realloc)
 - [ ] Error handling
 - [ ] Add license
