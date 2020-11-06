@@ -52,5 +52,6 @@ Mkfile.old
 dkms.conf
 
 # CLion build files and folder
+.idea/
 CMakeLists.txt
 cmake-build-debug/
