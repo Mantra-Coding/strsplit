@@ -1,45 +1,49 @@
 #include <stdlib.h>
 
-static char* strcheck(const char *string, char delimiter);
+static char* strcheck(const char *string, char delimiter, int* array_dim);
+
+int strdim(const char* string, char delimiter);
 
 char** strsplit(char *string, char delimiter, int* length) {
 
-    char *string_to_split = strcheck(string, delimiter);
+    int words;
+
+    char *string_to_split = strcheck(string, delimiter, &words);
 
     if (!string_to_split) return NULL;
 
-    char** result;
+    words = strdim(string_to_split, delimiter);
+
+    char** result = malloc(words * sizeof(char*));
 
     int i = 0;
     int last_del = 0;
-    int numwords = 0;
+    int current_word = 0;
 
     while (string_to_split[i] != '\0') {
         if (string_to_split[i] == delimiter || string_to_split[i+1] == '\0') {
             int k;
             int size;
             if (last_del == 0) {
-                result = malloc(1*sizeof(char*));
                 k = 0;
                 size = (string_to_split[i+1] == '\0' ) ? i+1 : i;
             }
             else {
                 size = i - last_del-1;
                 k = last_del + 1;
-                numwords++;
-                result = realloc(result, (numwords + 1) * sizeof(char *)); //fixme improve performance
+                current_word++;
             }
 
             if (string_to_split[i+1] == '\0' && last_del != 0) {
                 size = i - last_del;
             }
 
-            result[numwords] = malloc(size+1 * sizeof(char));
+            result[current_word] = malloc(size+1 * sizeof(char));
             int j = 0;
             for (; j < size; j++) {
-                result[numwords][j] = string_to_split[k++];
+                result[current_word][j] = string_to_split[k++];
             }
-            result[numwords][j] = '\0';
+            result[current_word][j] = '\0';
             last_del = i;
 
         }
@@ -47,9 +51,21 @@ char** strsplit(char *string, char delimiter, int* length) {
 
     }
 
-    *length = numwords + 1;
+    *length = current_word + 1;
 
     return result;
+}
+
+int strdim(const char* string, char delimiter){
+    int counter = 1;
+    int i = 0;
+    while (string[i] != '\0'){
+        if (string[i] == delimiter)
+            counter++;
+        i++;
+    }
+
+    return counter;
 }
 
 /*
@@ -62,9 +78,13 @@ char** strsplit(char *string, char delimiter, int* length) {
  * aggiungo il terminatore
  * restituisco la stringa
  */
-char* strcheck(const char *string, const char delimiter){
+char* strcheck(const char *string, const char delimiter, int* array_dim){
     int length = 0;
-    while (string[length] != '\0') length++;
+    *array_dim = 1;
+
+    while (string[length] != '\0') {
+        length++;
+    }
 
     int new_length = length+1;
 
