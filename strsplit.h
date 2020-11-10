@@ -5,6 +5,6 @@
 #ifndef ARRAYUTILS_STRSPLIT_H
 #define ARRAYUTILS_STRSPLIT_H
 
-char** strsplit(char, char, int*);
+char** strsplit(char*, char, int*);
 
 #endif //ARRAYUTILS_STRSPLIT_H
