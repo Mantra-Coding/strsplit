@@ -2,7 +2,7 @@
 <p>
 <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/Mantra-Coding/strsplit">
 <img alt="GitHub issues" src="https://img.shields.io/github/issues-raw/Mantra-Coding/strsplit">
-<img alt="GitHub" src="https://img.shields.io/github/license/Mantra-Coding/strsplit">
+<img alt="GitHub" src="https://img.shields.io/github/license/Mantra-Coding/strsplit?1">
 </p>
 
 <p align="center">
